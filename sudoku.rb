@@ -9,7 +9,7 @@
 #     go back and try again in different position
 #   END
 # ENDIF
-
+require 'benchmark'
 
 #Code
 
@@ -30,7 +30,7 @@ class Sudoku
 
   def initialize
     @found_solution = false
-    @verbose = false
+    @verbose = true
     @board_boxs = BOARD_BOXES
   end
 
@@ -141,8 +141,16 @@ game = Sudoku.new
 game.display(@board)
 puts 
 puts
-game.solve!(@board)
+# run_time = Benchmark.measure{game.solve!(@board)}
 puts
 puts
-game.display(@board)
 
+
+
+start = Time.now
+game.solve!(@board)
+endt = Time.now
+
+puts endt - start
+
+game.display(@board)
